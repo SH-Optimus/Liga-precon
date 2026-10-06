@@ -1,0 +1,52 @@
+/* Modo TV: sempre escuro, letras grandes, cabe em 16:9 sem rolagem */
+body.tv{--bg:#0d0a0a;--surface:#171212;--surface-2:#1d1717;--line:#33292a;--ink:#f6f1ef;--ink-2:#cfc3c1;--ink-3:#9a8d8b;
+  --accent:#ef5b60;--gold:#f0c75e;--gold-soft:#3a2e12;--good:#4fd08a;--good-soft:#123a24;--warn:#f0b43a;--warn-soft:#3a2b0e;--crit:#ff6b68;
+  color-scheme:dark;background:var(--bg);color:var(--ink);height:100vh;overflow:hidden;display:grid;grid-template-rows:auto 1fr;font-size:clamp(13px,min(1.2vw,2.1vh),40px)}
+.tvbar{display:flex;align-items:center;gap:2vw;padding:1.2vh 2vw;border-top:4px solid var(--accent);border-bottom:1px solid var(--line);background:var(--surface)}
+.tvbar .brand{display:flex;gap:.6em;align-items:center}
+.tvbar .brand .mark{width:5px;height:2em;border-radius:3px;background:linear-gradient(var(--gold),var(--accent))}
+.tvbar .brand b{font:800 1.2em var(--f-display)}
+.tvtitle{flex:1;font:800 1.5em var(--f-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tvtitle span{color:var(--gold)}
+.tvctl{display:flex;gap:.6em;align-items:center}
+#tv{display:grid;grid-template-columns:2.1fr 1fr;grid-template-rows:minmax(0,1fr);gap:1.6vw;padding:1.6vh 2vw;min-height:0}
+#tv>*:only-child{grid-column:1/-1}
+.tvmsg{grid-column:1/-1;align-self:center;text-align:center;font:700 2em var(--f-display);color:var(--ink-2)}
+.tvround{display:grid;grid-template-rows:auto 1fr auto auto;gap:1.4vh;min-height:0;overflow:hidden}
+.tvpods{min-height:0;overflow:hidden}
+.tvpanel{overflow:hidden}
+.tvclock{display:flex;align-items:baseline;gap:1.4vw;flex-wrap:wrap}
+.tvclock .timer{font:700 clamp(48px,7.5vw,150px)/1 var(--f-mono)}
+.tvclock .timer.over{color:var(--crit)}
+.tvnolimit{font:800 3em/1 var(--f-display);color:var(--gold)}
+.tvclock .muted{font-size:1.1em}
+.tvpods{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:min-content;gap:1.2vw;align-content:start}
+.tvpods.few{grid-template-columns:repeat(2,1fr)}
+.tvpods.final{grid-template-columns:minmax(0,60%);justify-content:center;font-size:1.5em}
+.tvpod{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1vh 1vw;display:grid;gap:.45vh}
+.tvpod.done{border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}
+.tvph{display:flex;justify-content:space-between;align-items:center}
+.tvph b{font:900 1.5em var(--f-display)}
+.tvseat{display:grid;grid-template-columns:1.8em 1fr auto;gap:.6em;align-items:center;font-size:1.08em;line-height:1.2}
+.tvseat .sn{font:700 .8em var(--f-mono);color:var(--ink-3);border:1px solid var(--line);border-radius:6px;text-align:center;padding:.1em 0}
+.tvseat .nm{min-width:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tvseat .nm small{display:block;font-weight:400;font-size:.72em;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis}
+.tvseat.win .nm{color:var(--good)}
+.tvbye{font-size:1.1em;color:var(--ink-2);margin:0}
+.tvpanel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.6vh 1.2vw;display:grid;grid-template-rows:auto 1fr auto;gap:1vh;min-height:0;align-content:start}
+.tvpanel h2{font:800 1.4em var(--f-display)}
+table.tvst{font-size:1.1em}
+table.tvst th{font-size:.62em}
+table.tvst td{padding:.45em .4em}
+.tvdots{display:flex;gap:.5em;justify-content:center}
+.tvdots i{width:.6em;height:.6em;border-radius:50%;background:var(--line)}
+.tvdots i.on{background:var(--gold)}
+.tvwait,.tvchamp{align-self:center;display:grid;gap:1.5vh;justify-items:start}
+.tvwait .big,.tvchamp .big{font:900 clamp(40px,6vw,120px)/1 var(--f-display);letter-spacing:-.02em}
+.tvchamp .big{color:var(--gold)}
+.tvchamp p,.tvurl{font-size:1.4em;color:var(--ink-2);margin:0}
+.tvnames{display:grid;grid-template-columns:repeat(2,1fr);gap:.4em 1.2em;font-size:1.2em}
+/* Faixa de tempo esgotado fixa embaixo, por cima do conteúdo (não mexe na grade da tela) */
+body.tv .timeup{position:fixed;left:0;right:0;bottom:0;top:auto;font-size:clamp(22px,3vw,52px);padding:1.4vh 2vw;box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+body.tv:has(> .timeup) #tv{padding-bottom:calc(clamp(22px,3vw,52px) * 1.2 + 4.4vh)}
+@media (max-width:900px){body.tv{height:auto;overflow:auto}#tv{grid-template-columns:1fr}.tvpods{grid-template-columns:1fr}}
