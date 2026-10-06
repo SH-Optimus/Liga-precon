@@ -219,7 +219,15 @@ Na primeira vez que o sistema roda, ele cria `liga-data/liga.sqlite` e importa o
 2. No servidor, substitua o arquivo em `liga-data/` (se existirem `liga.sqlite-wal` e `liga.sqlite-shm` ao lado, apague-os junto).
 3. Recarregue o site.
 
-**Mudar de servidor:** instale o pacote no servidor novo, copie o `liga.sqlite` (ou um backup) para a pasta de dados dele e pronto — os logins da organização vêm junto.
+**Restaurar pelo cPanel (HostGator), passo a passo:**
+1. **Gerenciador de arquivos** → pasta inicial (`/home/<usuario>`). Se não existir a pasta `liga-data`, crie (**+ Pasta** → `liga-data`), ao lado de `public_html`, não dentro dela.
+2. Dentro de `liga-data`: se já houver `liga.sqlite`, renomeie para `liga.sqlite.antigo` (por segurança) e apague `liga.sqlite-wal` e `liga.sqlite-shm`, se existirem.
+3. **Carregar** → envie o backup → clique com o botão direito nele → **Renomear** → `liga.sqlite`.
+4. Abra o painel. Se aparecer “Configurar o sistema”, o arquivo não está no lugar certo (confira a pasta e o nome).
+
+> **Logins:** o backup leva os logins da organização que existiam quando foi baixado; depois de restaurar, entra-se com um deles (a tela “Configurar o sistema” não aparece mais). Ao **passar o sistema para outra pessoa**, crie antes um login de organizador para ela (painel → **Organizadores**) e só então baixe o backup.
+
+**Mudar de servidor:** instale o pacote no servidor novo e coloque o backup em `liga-data/liga.sqlite` **antes do primeiro acesso** (se o sistema já tiver criado um banco vazio, substitua como acima). Os logins da organização vêm junto.
 
 ---
 
